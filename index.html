@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>PC Builder Pro - виджет</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+  background: linear-gradient(90deg, #22c55e, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.card {
+  background: rgba(30, 41, 59, 0.85);
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+.result-box {
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #020617;
+  border: 1px solid rgba(34,197,94,0.3);
+}
+
+.buy-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 5px 5px 0 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.info-content {
+  display: none;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(20, 30, 50, 0.85);
+  border-left: 5px solid #22c55e;
+}
+
+.info-section {
+  margin-top: 15px;
+}
+
+.info-section button {
+  width: 100%;
+  margin-top: 5px;
+  text-align: left;
+  background: linear-gradient(90deg, #06b6d4, #22c55e);
+  color: white;
+}
+
+.info-content ul {
+  margin-top: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.info-content ul li::before {
+  content: "• ";
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, #22c55e, #06b6d4);
+  margin: 15px 0;
+  border-radius: 2px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🖥️ PC Builder Pro</h1>
+
+<!-- Подробная информация о комплектующих -->
+<div class="card">
+<h2>ℹ️ Подробная информация о комплектующих</h2>
+
+<div class="info-section">
+<button onclick="toggleSection('cpuInfo')">🧠 CPU (Процессор)</button>
+<div id="cpuInfo" class="info-content">
+  <p>CPU — центральный процессор, «мозг» компьютера. Отвечает за выполнение всех вычислений и инструкций программ.</p>
+  <ul>
+    <li>Количество ядер и потоков влияет на многозадачность.</li>
+    <li>Тактовая частота (GHz) определяет скорость обработки инструкций.</li>
+    <li>Кэш-память ускоряет доступ к часто используемым данным.</li>
+  </ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="info-section">
+<button onclick="toggleSection('gpuInfo')">🎮 GPU (Видеокарта)</button>
+<div id="gpuInfo" class="info-content">
+  <p>GPU отвечает за обработку графики, игр и видео. Мощная видеокарта улучшает FPS и визуальное качество.</p>
+  <ul>
+    <li>VRAM — видеопамять, чем больше, тем лучше для высоких разрешений и текстур.</li>
+    <li>Частота ядра и CUDA/Stream процессоры влияют на производительность.</li>
+    <li>Поддержка DirectX и Ray Tracing для современных игр.</li>
+  </ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="info-section">
+<button onclick="toggleSection('ramInfo')">💾 RAM (Оперативная память)</button>
+<div id="ramInfo" class="info-content">
+  <p>RAM хранит временные данные для работы программ. Быстрая и достаточная RAM ускоряет систему.</p>
+  <ul>
+    <li>Объем (16GB, 32GB и более) важен для игр и работы с графикой.</li>
+    <li>Тип (DDR4, DDR5) и частота (MHz) влияют на скорость передачи данных.</li>
+    <li>Двухканальный режим повышает производительность.</li>
+  </ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<div class="info-section">
+<button onclick="toggleSection('ssdInfo')">💽 SSD (Накопитель)</button>
+<div id="ssdInfo" class="info-content">
+  <p>SSD хранит данные и ускоряет загрузку системы и программ.</p>
+  <ul>
+    <li>Тип: SATA или NVMe (NVMe быстрее).</li>
+    <li>Объем: 500GB, 1TB, 2TB и более.</li>
+    <li>Скорость чтения/записи влияет на загрузку и копирование файлов.</li>
+  </ul>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Инструменты для сборки ПК -->
+<div class="info-section">
+<button onclick="toggleSection('toolsInfo')">🛠️ Инструменты для сборки ПК</button>
+<div id="toolsInfo" class="info-content">
+  <ul>
+    <li>🔧 Отвёртки (крестовая и плоская)</li>
+    <li>⚡ Антистатический браслет</li>
+    <li>🧴 Термопаста для процессора</li>
+    <li>🔹 Клещи или пинцет для мелких деталей</li>
+    <li>💡 Фонарик или настольная лампа</li>
+    <li>🧰 Органайзер для винтиков и заглушек</li>
+  </ul>
+</div>
+</div>
+
+</div>
+
+<!-- Подбор ПК -->
+<div class="card">
+<h2>🧠 Подбор ПК по бюджету</h2>
+<input type="number" id="budget" placeholder="Введите бюджет в ₽">
+<button onclick="buildPC()">Подобрать сборку</button>
+<div id="result"></div>
+</div>
+
+<script>
+// Функция раскрытия/скрытия отдельных разделов
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+
+// База комплектующих
+const CPUs = [
+  {name: "Ryzen 5 5600", price: 18000},
+  {name: "Ryzen 7 5800X", price: 30000},
+  {name: "Intel i5 12400F", price: 20000},
+  {name: "Intel i7 12700K", price: 45000}
+];
+
+const GPUs = [
+  {name: "GTX 1660", price: 20000},
+  {name: "RTX 3060", price: 30000},
+  {name: "RTX 4070", price: 60000},
+  {name: "RTX 4080", price: 90000}
+];
+
+const RAMs = [
+  {name: "16GB DDR4", price: 7000},
+  {name: "32GB DDR4", price: 13000}
+];
+
+const SSDs = [
+  {name: "1TB SSD", price: 9000},
+  {name: "2TB SSD", price: 18000}
+];
+
+// Рандомный выбор
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Генерация ссылки на DNS
+function dnsLink(name) {
+  return "https://www.dns-shop.ru/search/?q=" + encodeURIComponent(name);
+}
+
+// Основная функция подборки
+function buildPC() {
+  let budget = +document.getElementById("budget").value;
+  let result = document.getElementById("result");
+
+  if (!budget) {
+    result.innerHTML = "Введите бюджет";
+    return;
+  }
+
+  let cpu, gpu, ram, ssd, total;
+
+  do {
+    cpu = randomItem(CPUs);
+    gpu = randomItem(GPUs);
+    ram = randomItem(RAMs);
+    ssd = randomItem(SSDs);
+    total = cpu.price + gpu.price + ram.price + ssd.price;
+  } while (total > budget);
+
+  result.innerHTML = `
+  <div class="result-box">
+    <h3>💻 Ваша сборка</h3>
+    <p><b>CPU:</b> ${cpu.name} — мозг системы, выполняет вычисления.</p>
+    <a class="buy-btn" href="${dnsLink(cpu.name)}" target="_blank">Купить</a>
+    
+    <p><b>GPU:</b> ${gpu.name} — отвечает за графику и игры.</p>
+    <a class="buy-btn" href="${dnsLink(gpu.name)}" target="_blank">Купить</a>
+    
+    <p><b>RAM:</b> ${ram.name} — хранение временных данных для программ.</p>
+    <a class="buy-btn" href="${dnsLink(ram.name)}" target="_blank">Купить</a>
+    
+    <p><b>SSD:</b> ${ssd.name} — скорость загрузки и хранения файлов.</p>
+    <a class="buy-btn" href="${dnsLink(ssd.name)}" target="_blank">Купить</a>
+
+    <p><b>💰 Общая стоимость:</b> ${total} ₽</p>
+  </div>
+  `;
+}
+</script>
+
+<div class="footer">
+Тихомиров Сергей и Марченко Ярослав (группа ИСиП25К)
+</div>
+
+</body>
+</html>
